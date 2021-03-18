@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Website made by Stijn van Sprang. Huge thanks to cryptonator for making the data available!-->
+<!--Find out more about them at https://www.cryptonator.com/api-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="/happy-removebg-preview.png">
+    <link rel="stylesheet" href="style.css">
+    <title> Dogecoin Tracker</title>
+</head>
+
+<body>
+    <div class="nav">
+        <div id="much-wow">
+            <div id="spacer"></div>
+            <div id="close1">
+
+                <div class="much-information">Wow! One Ðoge is the same as </div>
+
+
+                <div id="currencyselectoroneline">
+                    <div id="container">
+                        <form>
+                            <select id="currencyselector" onchange="javascript:handleSelect(this)">
+                                <option value="euro">€</option>
+                                <option value="usd">US$</option>
+                                <option value="gbp">£</option>
+                                <option value="aud">A$</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div id="doge_val" class="muchcoin"></div>
+                </div>
+
+
+                <br>
+            </div>
+            <div id="close2">
+                <div class="much-information">which is a hourly change of</div>
+
+                <div id="currencyselectoroneline">
+                    <div id="container">
+                        <form>
+                            <select id="currencyselector" onchange="javascript:handleSelect(this)">
+                                <option value="euro">€</option>
+                                <option value="usd">US$</option>
+                                <option value="gbp">£</option>
+                                <option value="aud">A$</option>
+                            </select>
+                        </form>
+                    </div>
+                    <div id="doge_cnge" class="muchcoin"></div>
+                </div>
+
+
+
+            </div>
+            <div id="spacer"></div>
+            <div class="small-print">Updates once every 30 seconds. Written by
+                <a href="https://www.reddit.com/user/stijm">Stijm</a>
+            </div>
+        </div>
+        <div id="such-wow">
+            <img id="doge_mood" src="">
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    //Fetch the price of Doge
+    const doge_api_url = 'https://api.cryptonator.com/api/ticker/doge-eur';
+
+    var intval = function refreshloop() {
+        function dogeHttpObject() {
+            try {
+                return new XMLHttpRequest();
+            } catch (error) {}
+        }
+
+        function dogeGetData() {
+            var request = dogeHttpObject();
+            request.open("GET", doge_api_url, false);
+            request.send(null);
+            console.log(request.responseText);
+            return request.responseText;
+        }
+
+        function dogeDataHandler() {
+            var raw_data_string = dogeGetData();
+            var data = JSON.parse(raw_data_string);
+            var price = data.ticker.price;
+            return price;
+        }
+
+        function dogeDataHandlerChange() {
+            var raw_data_string = dogeGetData();
+            var data = JSON.parse(raw_data_string);
+            var price = data.ticker.price;
+            var volume = data.ticker.volume;
+            var change = data.ticker.change;
+            var api_server_epoch_timestamp = data.timestamp;
+            var api_success = data.success;
+            var api_error = data.error;
+
+            if (change < 0) {
+                document.getElementById("doge_mood").src = "sad-removebg-preview.png";
+            } else {
+                document.getElementById("doge_mood").src = "happy-removebg-preview.png";
+            }
+
+            return change;
+        }
+
+        document.getElementById("doge_val").innerHTML = "" + dogeDataHandler() + ",";
+        document.getElementById("doge_cnge").innerHTML = "" + dogeDataHandlerChange() + "";
+
+
+
+
+        function makeHttpObject() {
+            try {
+                return new XMLHttpRequest();
+            } catch (error) {}
+        }
+    }
+    //execute to get resources once when loaded, than use a delay of 30 sec every time. cryptonator (provider of the data) does not update it any faster, so a waste of resources to keep updating any more.
+    intval()
+    window.setInterval(intval, 30000)
+
+
+    function handleSelect(elm) {
+        window.location =
+            elm.value + ".html"
+    }
+</script>

@@ -1,0 +1,225 @@
+/* CSS reset, fix backward compatibility problems */
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* End of CSS Reset */
+
+
+body {
+    background-color: #F2A51F;
+    overflow: hidden;
+    color: white;
+
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 10vw 80vw 10vw;
+    grid-template-rows: 10vh 80vh 10vh;
+}
+
+.nav {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 100%;
+    border: 20px white;
+    border-style: solid;
+    height: 100%;
+    width: 100%;
+    background-color: #F2A51F;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+#such-wow {
+    align-items: center;
+    display: flex;
+    flex-direction: column-reverse;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    width: 100%;
+    background-color: white;
+    width: 100%;
+}
+
+img {
+    height: auto;
+    width: 90%;
+}
+
+#much-wow {
+    font-size: 3vw;
+    display: flex;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-align: center;
+    font-weight: 120%;
+    height: 100%;
+    padding: 5px;
+
+}
+
+.much-information {
+
+    font-size: 1em;
+    font-weight: lighter;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.muchcoin {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 5vw;
+}
+
+.small-print {
+
+    font-size: 0.3em;
+}
+
+#spacer {
+    margin-top: 10%;
+}
+
+#currencyselectoroneline {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: orangered;
+}
+
+a:visited {
+    color: white
+}
+
+select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    font-family: inherit;
+    font-size: 1em;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+    color: inherit;
+
+}
+
+#container {
+    height: 50%;
+
+    border: 1px solid var(--select-border);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 5vw;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: transparent;
+    display: grid;
+    color: inherit;
+}
+
+option {
+    font-size: 0.3em;
+    text-align: center;
+}
+
+/*code to remove errow in IE */
+select::-ms-expand {
+    display: none;
+}
+
+#container::after {
+
+    content: "";
+    width: 0.8em;
+    height: 0.3em;
+    margin-left: 40%;
+    background-color: var(--select-arrow);
+    clip-path: polygon(25% 0%, 0 0%, 12% 25%);
+
+    --select-border: white;
+    --select-focus: orange;
+    --select-arrow: var(--select-border);
+    margin-right: 25%;
+}
+
+@media (max-width: 1000px) {
+    .nav {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 40% 60%;
+        border: 10px solid white;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #such-wow {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    img {
+        height: 98%;
+        width: auto;
+    }
+
+    #much-wow {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        font-size: 3vh;
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .muchcoin {
+        font-size: inherit;
+    }
+
+    body {
+        background-color: #F2A51F;
+        grid-template-columns: 5vw 90vw 5vw;
+        grid-template-rows: 5vh 90vh 5vh;
+    }
+
+    #container {
+        font-size: inherit;
+    }
+
+    #currencyselectoroneline {
+        font-size: 10vw;
+        width: auto;
+    }
+
+}
