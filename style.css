@@ -122,7 +122,7 @@ a:visited {
 }
 
 select {
-    appearance: none;
+    /*appearance: none;*/
     background-color: transparent;
     border: none;
     margin: 0;
@@ -158,6 +158,8 @@ select::-ms-expand {
     display: none;
 }
 
+
+/*
 #container::after {
 
     content: "";
@@ -172,6 +174,8 @@ select::-ms-expand {
     --select-arrow: var(--select-border);
     margin-right: 25%;
 }
+
+*/
 
 @media (max-width: 1000px) {
     .nav {
